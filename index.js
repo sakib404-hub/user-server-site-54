@@ -37,6 +37,12 @@ const run = async () => {
       res.send(users);
     });
 
+    app.post("/users", async (req, res) => {
+      const user = req.body;
+      const result = await userCollection.insertOne(user);
+      res.send(result);
+    });
+
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged the Deployment!Successfully!");
   } catch (error) {
