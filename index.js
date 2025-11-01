@@ -27,6 +27,16 @@ const run = async () => {
     // trying to connect with the mongoDB
     await client.connect();
 
+    //creating the Database
+    const userManagemnetDB = client.db("userManagemnetDB");
+    const userCollection = userManagemnetDB.collection("users");
+
+    app.get("/users", async (req, res) => {
+      const cursor = userCollection.find();
+      const users = await cursor.toArray();
+      res.send(users);
+    });
+
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged the Deployment!Successfully!");
   } catch (error) {
