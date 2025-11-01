@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { MongoClient, ServerApiVersion } = require("mongodb");
@@ -9,8 +10,9 @@ app.use(express.json());
 
 // userName  : userManagemnet
 // password: T8YDF2s316qmXSVH;
-const uri =
-  "mongodb+srv://userManagemnet:T8YDF2s316qmXSVH@crud-operation.iftbw43.mongodb.net/?appName=CRUD-operation";
+// const uri =
+//   "mongodb+srv://userManagemnet:T8YDF2s316qmXSVH@crud-operation.iftbw43.mongodb.net/?appName=CRUD-operation";
+const uri = process.env.DB_URI;
 
 const client = new MongoClient(uri, {
   serverApi: {
